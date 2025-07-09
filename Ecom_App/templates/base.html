@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <title>{% block title %}My Site{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+    {% include "includes/header.html" %}  <!-- Navbar -->
+
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    {% include "includes/footer.html" %}  <!-- Footer -->
+
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>
+
