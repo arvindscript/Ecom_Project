@@ -21,6 +21,7 @@
 
     {% block page_css %}
     {% endblock page_css %}
+   
 
  <style>
 /* Reset and basics */
@@ -218,7 +219,7 @@ body {
   
 </style>
 </head>
-{%block banner%} {%endblock&}
+ 
 <header class="navbar">
     <div class="logo">
       <a href="#"><img src="https://via.placeholder.com/120x40?text=Logo" alt="Logo"></a>
@@ -242,6 +243,7 @@ body {
     </div>
   </header>
 
+ {% block banner %}{% endblock %}
 
 <footer class="footer">
   <div class="footer-container">
@@ -253,10 +255,10 @@ body {
     <div class="footer-section">
       <h4>Links</h4>
       <ul>
-        <li><a href="{% url 'home' %}">Home</a></li>
-        <li><a href="{% url 'products' %}">Products</a></li>
-        <li><a href="{% url 'about' %}">About</a></li>
-        <li><a href="{% url 'contact' %}">Contact</a></li>
+        <li><a href="">Home</a></li>
+        <li><a href="">Products</a></li>
+        <li><a href="">About</a></li>
+        <li><a href="">Contact</a></li>
       </ul>
     </div>
     <div class="footer-section">

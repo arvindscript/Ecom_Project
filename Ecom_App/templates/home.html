@@ -1,62 +1,39 @@
-<!-- {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{% block title %}My Site{% endblock %}</title>
 
-   
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-    
 
-    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
-
-    {% block page_css %}
-    {% endblock page_css %}
-
-    {% block head %}
-    {% endblock head %}
-</head>
-<body>
-
-    {% block content %}
-    <div class="banner">
-        <img src="{% static'img/banner.jpg' %}" alt="Banner">
-    </div>
-    {% endblock content %}
-
-    {% block page_js %}
-    {% endblock page_js %}
-
-</body>
-</html> -->
+{% extends 'base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{% block title %}My Site{% endblock %}</title>
 
-    <!-- Font Awesome CDN for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+{% block title %}Home - My Site{% endblock %}
 
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+{% block content %}
 
-    {% block page_css %}{% endblock page_css %}
-    {% block head %}{% endblock head %}
-</head>
-<body>
+{% block banner %}
+<div class="banner">
+    <img src="{% static 'img/banner.jpg' %}" alt="Banner" style="width: 100%; height: auto;" />
+</div>
+{% endblock %}
 
-    {% block content %}
-    <div class="banner">
-        <img src="{% static 'img/banner.jpg' %}" alt="Banner">
+<section style="padding: 20px;">
+    <h2>Welcome to My Shop</h2>
+    <p>Browse our latest collections and deals!</p>
+</section>
+
+<section style="padding: 20px;">
+    <h3>Featured Products</h3>
+    <div style="display: flex; flex-wrap: wrap; gap: 20px;">
+        {% for product in products %}
+        <div style="border: 1px solid #ccc; padding: 10px; width: 200px;">
+            {% if product.image %}
+                <img src="{{ product.image.url }}" alt="{{ product.name }}" style="width: 100%; height: auto;" />
+            {% endif %}
+            <h4>{{ product.name }}</h4>
+            <p>{{ product.description|truncatewords:15 }}</p>
+            <strong>₹{{ product.price }}</strong>
+        </div>
+        {% empty %}
+        <p>No products to show.</p>
+        {% endfor %}
     </div>
-    {% endblock content %}
+</section>
 
-    {% block page_js %}{% endblock page_js %}
-
-</body>
-</html>
+{% endblock %}
