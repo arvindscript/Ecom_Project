@@ -1,42 +1,62 @@
+<!-- {% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}My Site{% endblock %}</title>
+
+   
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+
+    {% block page_css %}
+    {% endblock page_css %}
+
+    {% block head %}
+    {% endblock head %}
+</head>
+<body>
+
+    {% block content %}
+    <div class="banner">
+        <img src="{% static'img/banner.jpg' %}" alt="Banner">
+    </div>
+    {% endblock content %}
+
+    {% block page_js %}
+    {% endblock page_js %}
+
+</body>
+</html> -->
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
-     <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>{% block title %}My Site{% endblock %}</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}My Site{% endblock %}</title>
 
-  <!-- Font Awesome CDN for icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-  
-  <!-- Custom CSS -->
-  <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <!-- Font Awesome CDN for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
 
-    {% block page_css %}
+    {% block page_css %}{% endblock page_css %}
+    {% block head %}{% endblock head %}
+</head>
+<body>
 
-    {% endblock page_css %}
-
-
-    {% block head %}
-    {%content block%} 
+    {% block content %}
     <div class="banner">
-        <img src="Ecom_App/img/banner.avif" alt="">
+        <img src="{% static 'img/banner.jpg' %}" alt="Banner">
     </div>
-     {%endblock%}
-    {% endblock head %}
+    {% endblock content %}
 
-    
+    {% block page_js %}{% endblock page_js %}
 
-
-
-
-
-    {% block page_js %}
-
-    {% endblock page_js %}
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-  
 </body>
 </html>
