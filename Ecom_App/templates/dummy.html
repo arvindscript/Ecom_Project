@@ -1,0 +1,1468 @@
+{% comment %} <!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <title>{% block title %}My Site{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+    {% include "includes/header.html" %}  <!-- Navbar -->
+
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    {% include "includes/footer.html" %}  <!-- Footer -->
+
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>
+ {% endcomment %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+      {% block title %}{% endblock title %}
+      {% if request.path == '/' %}
+
+      {% else %}
+        |
+      {% endif %}
+      Bajarang E-Commerce
+    </title>
+
+    <meta name="description" content="{% block description %}{% endblock description %}">
+    <meta name="keywords" content="FT-Magazine, {% block keywords %}{% endblock keywords %}">
+    <meta name="author" content="{% block author %}{% endblock author %}">
+
+    {% block meta_tags %}
+
+    {% endblock meta_tags %}
+
+    <link rel="icon" href="{% static 'icon/icon.png' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+
+
+
+
+    {% block head %}
+    {% endblock head %}
+
+    {% block page_css %}
+    {% endblock page_css %}
+
+ <style>
+
+
+    @font-face {
+        font-family: 'VogueFont';
+        src: url("{% static 'Vogue.ttf' %}") format('truetype');
+        src: url("{% static 'fonts/vogue-avant-garde-bold.otf' %}") format('opentype');
+        src: url("{% static 'fonts/vogue-avant-garde-demi.otf' %}") format('opentype');
+        src: url("{% static 'fonts/vogue-avant-garde-heavy.otf' %}") format('opentype');
+        src: url("{% static 'fonts/vogue-avant-garde-black.otf' %}") format('opentype');
+        src: url("{% static 'fonts/vogue-avant-garde-book.otf' %}") format('opentype');
+    }
+
+    * {
+        font-family: 'VogueFont', sans-serif!important;
+        letter-spacing: 1px !important;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+          body {
+            /* {% comment %} height: 200vh;  {% endcomment %} */
+            background-color: #fff;
+          }
+
+          /* Top Navbar */
+
+          .top-navbar-content {
+            position: relative;
+           width: 100%;
+           display: flex;
+           align-items: center;
+           justify-content: center;
+          }
+
+          .logo {
+            position: absolute;
+            left: 53%;
+            top: -20px;
+            transform: translateX(-50%);
+            height: 4.375rem;
+            width: 13.75rem;
+            transition: height 0.3s ease-in, width 0.3s ease-in, left 0.3s ease-in;
+            cursor: pointer;
+        }
+
+        @media screen and (max-width: 1024px) {
+            .logo {
+                left: 50%;
+                height: 3.5rem;
+                width: 12rem;
+
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .logo {
+                height: 4.375rem;
+                width: 13.75rem;
+                left: 50%;
+
+            }
+
+        }
+
+
+        .logo {
+            position: absolute;
+            left: 53%;
+            top: -20px;
+            transform: translateX(-50%);
+            height: 4.375rem;
+            width: 11.75rem;
+            transition: height 0.3s ease-in, width 0.3s ease-in, left 0.3s ease-in, top 0.3s ease-in;
+            cursor: pointer;
+        }
+
+        @media screen and (max-width: 1024px) {
+            .logo {
+                left: 50%;
+                height: 3.5rem;
+                width: 12rem;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .logo {
+                height: 2.375rem;
+                width: 6.75rem;
+                left: 28%;
+                top: -3px;
+
+            }
+        }
+
+
+
+
+
+
+
+          .top-navbar {
+            height: 110px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: white;
+            padding: 10px 10px;
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-bottom: 1px solid #ddd;
+            transition: height 0.3s ease-in, transform 0.3s ease-in;
+          }
+          .top-navbar-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 1400px;
+          }
+
+          .nav-icons {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+          }
+
+          @media screen and (max-width: 768px) {
+            .nav-icons {
+              display: block;
+            }
+          }
+
+
+          .subscribe-btn {
+            background: black;
+            color: white;
+            padding: 6px 11px;
+            border: none;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+          }
+
+          .subscribe-btn:hover {
+            background: #333;
+          }
+
+          .icon {
+            font-size: 16px;
+            cursor: pointer;
+          }
+
+          /* Main Navbar */
+          .main-navbar {
+            position: fixed;
+            top: 110px;
+            left: 0;
+            width: 100%;
+            background: white;
+            padding: 10px 40px;
+            z-index: 999;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: center;
+            transition: transform 0.3s ease-in-out;
+            height: 50px;
+
+          }
+
+          .nav-links {
+            display: flex;
+            gap: 10px;
+            list-style: none;
+            font-size: 13px;
+            text-transform: uppercase;
+            color: black ;
+            font-weight: 600;
+          }
+
+          .nav-links li {
+            cursor: pointer;
+            position: relative;
+            padding: 5px;
+            text-decoration: none;
+            letter-spacing: 0.127811em;
+        }
+
+        .nav-links li:hover {
+
+            text-decoration: underline;
+            text-underline-offset: 15px;
+            text-decoration-thickness: 3px;
+        }
+
+        .content {
+            margin-top: 140px;
+            text-align: center;
+            font-size: 24px;
+        }
+
+
+          /* Hamburger  */
+ .hamburger {
+    display: block;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 10px;
+    position: absolute;
+    left: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1002;
+}
+
+
+  @media screen and (max-width: 768px) {
+    .hamburger {
+        left: -10px !important;
+        top: 14px !important;
+    }
+
+    .main-navbar {
+        position: fixed;
+        left: -100%;
+        top: 110px;
+        width: 250px;
+        height: 100vh;
+        background: white;
+        box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+        display: flex;
+        flex-direction: column;
+        padding: 20px;
+        transition: left 0.3s ease-in-out;
+    }
+
+    .main-navbar.active {
+        left: 0;
+    }
+
+    .nav-links {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+}
+
+
+.mobile-icons {
+    display: none;
+  }
+
+
+  @media screen and (max-width: 768px) {
+    .mobile-icons {
+      display: flex;
+      justify-content: space-between;
+      font-size: 16px;
+      font-weight: bold;
+      margin-top: 20px;
+    }
+  }
+
+
+
+
+
+
+
+
+
+  .links {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 250px;
+    height: 100vh;
+    background: black;
+    transition: left 0.3s ease-in-out;
+    z-index: 1001;
+    padding-top: 60px;
+    list-style: none;
+    padding-left: 20px;
+    color: white;
+
+    overflow-y: auto;
+    border-radius: 0px;
+
+}
+
+{% comment %} background: linear-gradient(135deg,rgb(255, 255, 255),rgb(160, 160, 160)); {% endcomment %}
+
+/* Scrollbar */
+.links::-webkit-scrollbar {
+    width: 8px;
+}
+.links::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+}
+.links::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.4);
+}
+
+/* List Item Styling */
+.links li {
+    margin: 12px 0;
+    padding: 12px 15px;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background 0.3s, transform 0.2s;
+
+
+}
+
+
+ .nav-links li a {
+    text-decoration: none !important;
+    color: black;
+}
+
+.links li a {
+    text-decoration: none !important;
+    color: white;
+}
+
+/* Hover Effect */
+.links li:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateX(5px);
+}
+
+/* Sidebar Open */
+.links.open {
+    left: 0;
+}
+
+/* Hide Hamburger When Sidebar is Open */
+.hamburger.hidden {
+    display: none;
+}
+
+/* Hamburger Button */
+/* {% comment %} .hamburger {
+    font-size: 24px;
+    cursor: pointer;
+    padding: 10px;
+    position: fixed;
+    left: 10px;
+    top: 54px;
+    z-index: 1002;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+    padding: 8px 12px;
+    transition: background 0.3s;
+} {% endcomment %} */
+
+.hamburger:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* Close Button */
+.close-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 22px;
+    cursor: pointer;
+
+    padding: 5px 10px;
+    border-radius: 80%;
+    transition: background 0.3s, transform 0.2s;
+}
+
+.close-btn:hover {
+    background: rgba(52, 51, 51, 0.4);
+    transform: rotate(90deg);
+}
+
+/* Responsive  */
+@media screen and (max-width: 768px) {
+    .links {
+        width: 70%;
+        left: -70%;
+    }
+
+    .links.open {
+        left: 0;
+    }
+
+    .hamburger {
+        left: 15px;
+        top: 1px;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .links {
+        width: 300px;
+    }
+}
+
+
+
+
+.showicon {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.nav-icons {
+    display: none;
+    align-items: center;
+    gap: 20px;
+}
+
+@media screen and (max-width: 768px) {
+    .showicon {
+        display: none;
+    }
+
+    .nav-icons {
+        display: flex;
+    }
+}
+
+
+
+/* footer */
+
+.footer {
+    background-color: black;
+    color: white;
+    padding: 40px 20px;
+}
+
+.whole-footer {
+    background-color: black;
+    color: white;
+
+}
+.footer-container {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    max-width: 1448px;
+    margin: auto;
+    padding: 32px
+
+}
+.footer-section {
+    flex: 1;
+    min-width: 250px;
+    padding: 20px;
+    text-decoration: none;
+
+
+
+    font-style: normal;
+    letter-spacing: 0.127811em;
+    line-break: auto;
+    line-height: 3em;
+    font-size: 12px;
+    font-weight: 400;
+    overflow-wrap: normal;
+    transition: color 200ms;
+    color: rgb(255, 255, 255);
+
+
+}
+.footer-section  p{
+    font-feature-settings: normal;
+    font-style: normal;
+    letter-spacing: -0.00710059em;
+    line-break: auto;
+    line-height: 1.4em;
+    font-size: 13px;
+    font-weight: 400;
+    overflow-wrap: normal;
+    margin-top: 1rem;
+    margin-bottom: 2.5rem;
+    color: rgb(255, 255, 255);
+
+
+
+}
+.footer h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.options {
+    font-size: 13px;
+    font-weight: 600;
+}
+.footer p {
+    font-size: 14px;
+    line-height: 1.5;
+}
+.social-icons {
+    display: flex;
+    gap: 15px;
+    font-size: 24px;
+}
+.footer-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
+}
+.footer-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 12px;
+}
+.footer-links a:hover {
+    text-decoration: underline;
+}
+.footer-bottom {
+    text-align: center;
+    padding-top: 20px;
+    border-top: 1px solid #444;
+    font-size: 12px;
+    opacity: 0.8;
+}
+
+
+.footer-bottom a{
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+}
+
+.footer-bottom a:hover{
+    text-decoration: underline;
+
+}
+
+
+
+@media (max-width: 768px) {
+    .footer-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    .footer-section {
+        min-width: 90%;
+        padding: 10px;
+    }
+    .social-icons {
+        justify-content: center;
+    }
+    .navbar-top h1 {
+        font-size: 2rem;
+    }
+    .navbar-top .icons {
+        position: static;
+        display: flex;
+        justify-content: center;
+    }
+    .navbar-menu {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+
+
+
+
+
+
+
+}
+
+.footer-section img {
+    max-width: 194px;
+    height: auto;
+    transition: max-width 0.3s ease, transform 0.3s ease;
+    display: block;
+    /* margin: 0 auto; */
+    text-align: center;
+}
+
+/* Shrink effect (if needed for smaller screens) */
+@media (max-width: 768px) {
+    .footer-section img {
+        max-width: 120px;
+        margin-left: 95px;
+    }
+    .footer-section p {
+        margin-right: -13px
+    }
+
+}
+
+
+.social-icons {
+    display: flex;
+        gap: 54px;
+        font-size: 34px;
+        cursor: pointer;
+
+
+}
+
+
+.social-icons span i {
+    transition: transform 0.3s ease, color 0.3s ease;
+    font-family: 'FontAwesome'!important;
+    color:white;
+}
+
+.social-icons span i:hover {
+    transform: scale(1.2);
+    color: #ff4081;
+}
+
+
+
+@media (max-width: 768px) {
+    .social-icons {
+        gap: 46px;
+       font-size: 25px;
+    }
+
+}
+
+
+.profile-items{
+        clip-path: polygon(0 0, 100% 0%, 100% 0, 0 0);
+        opacity: 0;
+        transition: clip-path 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    }
+    .user-profile{
+        border: 1px solid transparent;
+        border-radius: 20px;
+    }
+    .user-profile:hover{
+        border: 1px solid rgb(179, 179, 179);
+        border-radius: 20px;
+    }
+    .user-profile:hover .profile-items{
+        clip-path: polygon(0 0, 100% 0%, 100% 100%, 0% 100%);
+        opacity: 1;
+    }
+
+
+    </style>
+
+    <style>
+    .search-icon {
+        cursor: pointer;
+        font-size: 20px;
+    }
+    .search-block {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.8);
+        justify-content: center;
+        align-items: center;
+    }
+    .search-box {
+        background: white;
+        padding: 20px;
+        border-radius: 5px;
+        display: flex;
+        gap: 10px;
+        position: relative;
+    }
+    .search-box input {
+        padding: 10px;
+        width: 350px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+    }
+    .close-btn-search {
+        cursor: pointer;
+        background: black;
+        color: white;
+        padding: 5px 20px;
+        border: none;
+        border-radius: 3px;
+    }
+
+
+    {% comment %} for drop down {% endcomment %}
+
+      .dropdown-cards {
+        display: none;
+    flex-direction: row;
+    align-items: center;
+    position: absolute;
+    top: 100%;
+    left: 70%;
+    transform: translateX(-50%); 
+    width: 1300px;
+    /* max-width: 44vw; */
+    height: 345px;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    gap: 15px;
+    z-index: -1;
+
+
+    padding-top: 41px;
+    width: 100vw !important;
+
+
+    
+      
+      
+}
+      
+      
+      .nav-links li:hover .dropdown-cards {
+        display: flex;
+      }
+
+
+      .card {
+        width: 220px;
+        background: #fff;
+        border-radius: 8px;
+        overflow: hidden;
+        height: 270px;
+        
+      }
+      
+      .card img {
+        width: 100%;
+        height: 130px;
+        object-fit: cover;
+        display: block;
+      }
+      
+      .card-info {
+        padding: 10px;
+      }
+      
+      .card-info .category {
+        font-size: 11px;
+        color: #888;
+        text-transform: uppercase;
+        font-weight: 600;
+        margin-bottom: 4px;
+      }
+      
+      .card-info h2 {
+        font-size: 15px;
+        margin: 0 0 6px;
+        font-weight: bold;
+        color: #000;
+      }
+      .card-info .date {
+        font-size: 12px;
+        color: #999;
+      } 
+
+
+
+{% comment %} arrow {% endcomment %}
+
+
+{% comment %} .arrows-bottom {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: -11px;
+    position: fixed;
+    top: 322px;
+    left: 45px;
+  } {% endcomment %}
+  {% comment %} .arrows-bottom {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: -11px;
+  position: fixed;
+  top: 322px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+  
+  .arrow-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 6px;
+    transition: transform 0.2s ease;
+  }
+  
+  .arrow-btn:hover {
+    transform: scale(1.2);
+  } {% endcomment %}
+  
+.arrows-bottom {
+  display: flex;
+  justify-content: center;
+  align-items: center; /* Optional: vertically centers items inside if needed */
+  gap: 20px;
+  margin-top: -11px;
+  position: fixed;
+  top: 322px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.arrow-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  transition: transform 0.2s ease;
+}
+
+.arrow-btn:hover {
+  transform: scale(1.2) translateZ(0); /* Adds scaling without affecting parent positioning */
+  z-index: 1; /* Optional: ensures hover element appears on top */
+}
+
+
+</style>
+</head>
+
+
+
+
+ <body onload="load()">
+    <nav class="top-navbar">
+        <div class="top-navbar-content">
+            <div class="nav-icons-left"></div>
+            <div class="hamburger" onclick="toggleMenu()">☰</div>
+            <ul class="links">
+                <div class="close-btn" onclick="toggleMenu()">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M18 6L6 18M6 6L18 18" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <li><a href="/">HOME</a></li>
+                <li><a href="/about">ABOUT-US</a></li>
+                <li><a href="/magazine_list">MAGAZINE</a></li>
+                <li><a href="/future">FUTURE</a></li>
+                <li><a href="/reviews">REVIEWS</a></li>
+                <li><a href="/ratings">RATINGS</a></li>
+                <li><a href="/technologies">TECHNOLOGIES</a></li>
+                <li><a href="/news">NEWS</a></li>
+                <li><a href="/defence">DEFENCE</a></li>
+                <!--<li><a href="/mobility">MOBILITY</a></li>-->
+                <!--<li><a href="/logistics">LOGISTICS</a></li>-->
+                <li><a href="/fashion">FASHION</a></li>
+                <li><a href="/vision">VISION</a></li>
+                <li><a href="/media">MEDIA</a></li>
+                <!--<li><a href="/cinema">CINEMA</a></li>-->
+                <li><a href="/startups">STARTUPS</a></li>
+                <!--<li><a href="/investments">INVESTMENTS</a></li>-->
+                <li><a href="/contact">CONTACT US</a></li>
+                <li><a href="/subscribe">SUBSCRIBE</a></li>
+                <li><a href="/signup">SIGN IN</a></li>
+                <li><a href="/search">Search</a></li>
+            </ul>
+            <a href="/">
+                <img src="{% static '/img/ft-logo.png' %}" alt="FT logo" class="logo">
+            </a>
+            <div class="showicon">
+                <a href="/subscribe" class="subscribe-link">
+                    <button class="subscribe-btn">SUBSCRIBE</button>
+                </a>
+                {% if request.user.is_authenticated %}
+                    <div class="user-profile" style="display: inline-block; position: relative; cursor: pointer;">
+                        <a style="text-decoration: none; color: inherit;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="8" r="4"></circle>
+                                <path d="M16 18a4 4 0 0 0-8 0"></path>
+                            </svg>
+                        </a>
+                        <img width="15" height="15" style="color: #ddd;" src="https://img.icons8.com/ios-filled/50/expand-arrow--v1.png" alt="expand-arrow--v1"/>&nbsp;
+
+                        <div class="profile-items" style="position: absolute; top: 200%; right: 0%;     box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px; display: block; text-align: center; padding: 20px; background-color: white; border-radius: 5px;">
+                            <div style="margin-bottom: 20px; padding: 2px 5px; text-align: center;"><a href="/profile" style="text-decoration: none; color: black;">Profile</a></div>
+                            <div style="padding: 2px 5px; text-align: center;"><a href="/logout" style="text-decoration: none; color: black;">Logout</a></div>
+                        </div>
+                    </div>
+                    <a href="/search" style="text-decoration: none; color: inherit; font-size: smaller; font-weight: bold; cursor: pointer;" class="search-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.415l-3.85-3.85a1.007 1.007 0 0 0-.115-.098zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                        </svg>
+                    </a>
+
+                {% else %}
+                    <a style="text-decoration: none; color: inherit; margin-right: -15px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="8" r="4"></circle>
+                            <path d="M16 18a4 4 0 0 0-8 0"></path>
+                        </svg>
+                    </a>
+
+                    <a href="/signup" style=" color: inherit; font-size: smaller; font-weight: bold;">
+                        SIGN IN
+                    </a>
+
+                    <a href="/search" style="text-decoration: none; color: inherit; font-size: smaller; font-weight: bold;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.415l-3.85-3.85a1.007 1.007 0 0 0-.115-.098zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                        </svg>
+                    </a>
+                {% endif %}
+
+                <div class="search-block" id="searchBlock" onclick="closeSearch(event)">
+                    <div class="search-box" onclick="event.stopPropagation()">
+                        <form method="post" style="display: flex; gap: 5px;">
+                            {% csrf_token %}
+                            <input type="text" placeholder="Enter your search query...">
+                            <button type="submit" class="close-btn-search" onclick="toggleSearch()">Search</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="nav-icons" style="gap:10px">
+                <a href="/subscribe" class="subscribe-link">
+                    <button class="subscribe-btn">SUBSCRIBE</button>
+                </a>
+                {% if request.user.is_authenticated %}
+                    <div class="user-profile" style="display: inline-block; position: relative; cursor: pointer;">
+                        <a style="text-decoration: none; color: inherit;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="8" r="4"></circle>
+                                <path d="M16 18a4 4 0 0 0-8 0"></path>
+                            </svg>
+                        </a>
+                        <img width="15" height="15" style="color: #ddd;" src="https://img.icons8.com/ios-filled/50/expand-arrow--v1.png" alt="expand-arrow--v1"/>&nbsp;
+
+                        <div class="profile-items" style="position: absolute; top: 200%; right: 0%;     box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px; display: block; text-align: center; padding: 20px; background-color: white; border-radius: 5px;">
+                            <div style="margin-bottom: 20px; padding: 2px 5px; text-align: center;"><a href="/profile" style="text-decoration: none; color: black;">Profile</a></div>
+                            <div style="padding: 2px 5px; text-align: center;"><a href="/logout" style="text-decoration: none; color: black;">Logout</a></div>
+                        </div>
+                    </div>
+                {% else %}
+                    <a style="text-decoration: none; color: inherit; margin-right: -8px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="8" r="4"></circle>
+                            <path d="M16 18a4 4 0 0 0-8 0"></path>
+                        </svg>
+                    </a>
+
+                    <a href="/signup" style=" color: inherit; font-size: 12px; font-weight: bold;">
+                        SIGN IN
+                    </a>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+        <!-- Second Navbar (Main Navigation) -->
+    <nav class="main-navbar">
+        <ul class="nav-links">
+            <li><a href="/"><i class="fa-solid fa-house-chimney" style="color: #000000; font-family: 'Font Awesome 6 Free' !important; font-size: 18px;"></i></a></li>
+
+            <li><a href="/magazine_list">MAGAZINE</a></li> 
+
+            <li>
+                <a href="/future">FUTURE</a>
+                <div class="dropdown-cards">
+                    {% for item in future_magazines %}
+                        <div class="card">
+                            <img src="{{ item.cover_image.url }}" alt="image">
+                            <div class="card-info">
+                                <span class="category">{{ item.category.name }}</span>
+                                <h2>{{ item.title }}</h2>
+                                <p class="lastupdate" style="font-size: 11px;">{{ item.published_at|date:"M d, Y" }}</p>
+                            </div>
+                        </div>
+                    {% endfor %}                 
+                    
+                  </div>
+                  
+            </li>
+            <li>
+                <a href="/reviews">REVIEWS</a>
+                <div class="dropdown-cards">
+                    {% for item in reviews_magazines %}
+                        <div class="card">
+                            <img src="{{ item.cover_image.url }}" alt="image">
+                            <div class="card-info">
+                                <span class="category">{{ item.category.name }}</span>
+                                <h2>{{ item.title }}</h2>
+                                <p class="lastupdate" style="font-size: 11px;">{{ item.published_at|date:"M d, Y" }}</p>
+                            </div>
+                        </div>
+                    {% endfor %} 
+                    
+                  </div>
+            </li>
+            <li>
+                <a href="/ratings">RATINGS</a>
+                <div class="dropdown-cards">
+                    {% for item in ratings_magazines %}
+                        <div class="card">
+                            <img src="{{ item.cover_image.url }}" alt="image">
+                            <div class="card-info">
+                                <span class="category">{{ item.category.name }}</span>
+                                <h2>{{ item.title }}</h2>
+                                <p class="lastupdate" style="font-size: 11px;">{{ item.published_at|date:"M d, Y" }}</p>
+                            </div>
+                        </div>
+                    {% endfor %} 
+                    
+                    
+                  </div>
+            </li>
+            <li>
+                <a href="/technologies">TECHNOLOGIES</a>
+                <div class="dropdown-cards">
+                    <div class="slider-container">
+                        <div class="swiper mySwiper">
+                            <div class="swiper-wrapper">
+                                {% for item in technologies_magazines %}
+                                    <a href="/{{ item.category|lower }}/{{item.slug}}" style="text-decoration: none; color: black;">
+                                        <div class="swiper-slide slider-card d-flex align-items-stretch" style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                                            <img src="{{ item.cover_image.url }}" alt="Card Image" class="slider-img">
+                                            <div class="slider-content">
+                                                <a href="" class="slider-category" style="color: black;">{{ item.category }}</a>
+                                                <h5 class="slider-title">{{ item.title }}</h5>
+                                                <p class="slider-footer"style="color: black;" >Last updated {{ item.published_at|date:"M d, Y" }}</p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                {% endfor %}
+                            </div>
+                            <div class="swiper-button-prev"></div>
+                            <div class="swiper-button-next"></div>
+                            <div class="swiper-pagination"></div>
+                        </div>
+                    </div>
+                    
+                  </div>
+            </li>
+            <li>
+                <a href="/news">NEWS</a>
+                <div class="dropdown-cards">
+                    {% for item in news_magazines %}
+                        <div class="card">
+                            <img src="{{ item.cover_image.url }}" alt="image">
+                            <div class="card-info">
+                                <span class="category">{{ item.category.name }}</span>
+                                <h2>{{ item.title }}</h2>
+                                <p class="lastupdate" style="font-size: 11px;">{{ item.published_at|date:"M d, Y" }}</p>
+                            </div>
+                        </div>
+                    {% endfor %} 
+                    
+                  </div>
+            </li>
+            <li>
+                <a href="/defence">DEFENCE</a>
+                <div class="dropdown-cards">
+                    {% for item in defence_magazines %}
+                        <div class="card">
+                            <img src="{{ item.cover_image.url }}" alt="image">
+                            <div class="card-info">
+                                <span class="category">{{ item.category.name }}</span>
+                                <h2>{{ item.title }}</h2>
+                                <p class="lastupdate" style="font-size: 11px;">{{ item.published_at|date:"M d, Y" }}</p>
+                            </div>
+                        </div>
+                    {% endfor %} 
+                    
+                  </div>
+            </li>
+            <!--<li><a href="/mobility">MOBILITY</a></li>-->
+            <!--<li><a href="/logistics">LOGISTICS</a></li>-->
+            <li>
+                <a href="/fashion">FASHION</a>
+                <div class="dropdown-cards">
+                    {% for item in fashion_magazines %}
+                        <div class="card">
+                            <img src="{{ item.cover_image.url }}" alt="image">
+                            <div class="card-info">
+                                <span class="category">{{ item.category.name }}</span>
+                                <h2>{{ item.title }}</h2>
+                                <p class="lastupdate" style="font-size: 11px;">{{ item.published_at|date:"M d, Y" }}</p>
+                            </div>
+                        </div>
+                    {% endfor %}
+                    
+                  </div>
+            </li>
+            <li>
+                <a href="/vision">VISION</a>
+                <div class="dropdown-cards">
+                    {% for item in vision_magazines %}
+                        <div class="card">
+                            <img src="{{ item.cover_image.url }}" alt="image">
+                            <div class="card-info">
+                                <span class="category">{{ item.category.name }}</span>
+                                <h2>{{ item.title }}</h2>
+                                <p class="lastupdate" style="font-size: 11px;">{{ item.published_at|date:"M d, Y" }}</p>
+                            </div>
+                        </div>
+                    {% endfor %}                     
+                    
+                  </div>
+            </li>
+            <li>            
+                <a href="/media">MEDIA</a>
+                <div class="dropdown-cards">
+                    {% for item in media_magazines %}
+                        <div class="card">
+                            <img src="{{ item.cover_image.url }}" alt="image">
+                            <div class="card-info">
+                                <span class="category">{{ item.category.name }}</span>
+                                <h2>{{ item.title }}</h2>
+                                <p class="lastupdate" style="font-size: 11px;">{{ item.published_at|date:"M d, Y" }}</p>
+                            </div>
+                        </div>
+                    {% endfor %}                       
+                    
+                  </div>
+            </li>
+            <!--<li><a href="/cinema">CINEMA</a></li>-->
+            <li>
+                <a href="/startups">STARTUPS</a>
+                <div class="dropdown-cards">
+                    {% for item in startup_magazines %}
+                        <div class="card">
+                            <img src="{{ item.cover_image.url }}" alt="image">
+                            <div class="card-info">
+                                <span class="category">{{ item.category.name }}</span>
+                                <h2>{{ item.title }}</h2>
+                                <p class="lastupdate" style="font-size: 11px;">{{ item.published_at|date:"M d, Y" }}</p>
+                            </div>
+                        </div>
+                    {% endfor %}                    
+                    
+                  </div>
+            </li>
+            <!--<li><a href="/investments">INVESTMENTS</a></li>-->
+        </ul>
+    </nav>
+
+
+
+
+
+
+
+<script>
+    function toggleSearch() {
+        let searchBlock = document.getElementById('searchBlock');
+        searchBlock.style.display = searchBlock.style.display === 'flex' ? 'none' : 'flex';
+    }
+
+    function closeSearch(event) {
+        let searchBlock = document.getElementById('searchBlock');
+        if (event.target === searchBlock) {
+            searchBlock.style.display = 'none';
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    document.querySelectorAll(".options").forEach(option => {
+    option.addEventListener("click", () => {
+        const links = option.nextElementSibling;
+        links.classList.toggle("active");
+    });
+});
+
+</script>
+
+<script>
+
+//     {% comment %} let prevScrollPos = window.scrollY;
+
+// window.addEventListener("scroll", () => {
+//     const currentScrollPos = window.scrollY;
+//     const topNavbar = document.querySelector(".top-navbar");
+//     const mainNavbar = document.querySelector(".main-navbar");
+//     const logo = document.querySelector(".logo");
+
+//     if (currentScrollPos > 50) {
+//         logo.style.height = "3rem";
+//         logo.style.width = "10rem";
+//         mainNavbar.style.transform = "translateY(-160%)";
+//         topNavbar.style.height = "80px";
+//         logo.style.top = '-10px';
+//     } else {
+//         logo.style.height = "4.375rem";
+//         logo.style.width = "13.75rem";
+//         mainNavbar.style.transform = "translateY(0)";
+//         topNavbar.style.height = "110px";
+//         logo.style.top = '-20px';
+
+
+
+
+//     }
+
+
+//     if (currentScrollPos < prevScrollPos) {
+//         logo.style.left = "53%";
+//         logo.style.transform = "translateX(-50%)";
+//     } else {
+//         if (window.innerWidth > 768) {
+//             logo.style.left = "53%";
+//         } else {
+//             logo.style.left = "53%";
+//         }
+//     }
+
+//     prevScrollPos = currentScrollPos;
+// }); {% endcomment %}
+
+
+
+let prevScrollPos = window.scrollY;
+
+window.addEventListener("scroll", () => {
+    const currentScrollPos = window.scrollY;
+    const topNavbar = document.querySelector(".top-navbar");
+    const mainNavbar = document.querySelector(".main-navbar");
+    const logo = document.querySelector(".logo");
+
+    if (window.innerWidth > 768) { // Only apply size change for larger screens
+        if (currentScrollPos > 50) {
+            logo.style.height = "3rem";
+            logo.style.width = "9rem";
+            logo.style.top = '-10px';
+        } else {
+            logo.style.height = "4.375rem";
+            logo.style.width = "11.75rem";
+            logo.style.top = '-20px';
+        }
+    }
+
+    mainNavbar.style.transform = currentScrollPos > 50 ? "translateY(-160%)" : "translateY(0)";
+    topNavbar.style.height = currentScrollPos > 50 ? "80px" : "110px";
+
+    if (window.innerWidth <= 768) {
+        if (currentScrollPos >= prevScrollPos) {
+            logo.style.top = '-3px';
+        }
+    }
+
+    prevScrollPos = currentScrollPos;
+});
+
+
+
+ function toggleMenu() {
+    document.querySelector(".main-navbar").classList.toggle("active");
+ }
+
+
+ function toggleMenu() {
+    let linksMenu = document.querySelector('.links');
+    let hamburger = document.querySelector('.hamburger');
+
+    linksMenu.classList.toggle('open');
+    hamburger.classList.toggle('hidden'); // Hide/show hamburger
+ }
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+
+
+
+
+
+
+    {% block content %}
+
+    {% endblock content %}
+    <footer class="whole-footer">
+        <div class="footer-container">
+            <div class="footer-section" >
+                <a href="/">
+                    <img src="{% static '/img/ft_logo_white.png' %}" >
+                </a>
+                <p>Livingstone Institute of Future Technologies <br>
+                    {% comment %} A-38, sector 67, Noida
+                    Noida - 201301, India <br>
+                    Contact@livingstoneinstitute.com</p> {% endcomment %}
+                    Your Gateway to Unprecedented Innovation and Global Networking.
+                </p>
+                    <div class="social-icons">
+                        <span class="youtube">
+                            <a href="https://www.youtube.com/@futuretechnologiesft" target="_blank">
+                                <i class="fa-brands fa-youtube"></i>
+                            </a>
+                        </span>
+
+                        <span class="whatsapp">
+                            <a href="https://wa.me/919205625360?text=Hello%20World!" target="_blank">
+                                <i class="fa-brands fa-whatsapp"></i>
+                            </a>
+                        </span>
+
+                        <span class="instagram">
+                            <a href="https://www.instagram.com/futuretechnologies_/" target="_blank">
+                                <i class="fa-brands fa-instagram"></i>
+                            </a>
+                        </span>
+
+                        <span class="linkedin">
+                            <a href="https://www.linkedin.com/company/ft-future-technologies/" target="_blank">
+                                <i class="fa-brands fa-linkedin"></i>
+                            </a>
+                        </span>
+                    </div>
+
+
+            </div>
+            <div class="footer-section" style='margin-left: 10%;'>
+                <h2 class="options" >MORE FROM MAGAZINE</h2>
+                <div class="footer-links">
+                    <a href="/">HOME</a>
+                    <a href="/about">ABOUT US</a>
+                    <a href="/magazine_list">MAGAZINE</a>
+                    <a href="/contact">CONTACT US</a>
+
+                </div>
+            </div>
+            <div class="footer-section" style='margin-left: 10%;' >
+                <h2 class="options">SEE MORE STORIES</h2>
+                <div class="footer-links">
+                    <!-- {% comment %} <a href="#">Privacy Policy</a>
+                    <a href="#">Cookies Policy</a>
+                    <a href="#">Terms</a> {% endcomment %} -->
+                    <!-- {% comment %} <a href="/magazine_list">Magazine</a> {% endcomment %} -->
+                    <!--<a href="/magazine_list">MAGAZINE</a>-->
+                    <a href="/future">FUTURE</a>
+                    <a href="/reviews">REVIEWS</a>
+                    <a href="/ratings">RATINGS</a>
+                    <a href="/technologies">TECHNOLOGIES</a>
+                    <a href="/news">NEWS</a>
+                    <a href="/defence">DEFENCE</a>
+                    <!--<a href="/mobility">MOBILITY</a>-->
+                    <!--<a href="/logistics">LOGISTICS</a>-->
+                    <a href="/fashion">FASHION</a>
+                    <a href="/vision">VISION</a>
+                    <a href="/media">MEDIA</a>
+                    <!--<a href="/cinema">CINEMA</a>-->
+                    <a href="/startups">STARTUPS</a>
+                    <!--<a href="/investments">INVESTMENTS</a>-->
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>
+                <a href="/Cookies">COOKIES POLICY</a> |
+                <a href="/privacy">PRIVACY POLICY</a> |
+                <a href="terms">TERMS</a>
+                {% comment %} <a href="your-cookies-settings-link">COOKIES SETTINGS</a> {% endcomment %}
+              </p>
+
+            <p>© 2025 Livingstone Institute of Future Technologies. All rights reserved.</p>
+
+        </div>
+        <a href="#" class="back-to-top">&uarr;</a>
+    </footer>
+
+
+    {% block page_js %}
+
+    {% endblock page_js %}
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>

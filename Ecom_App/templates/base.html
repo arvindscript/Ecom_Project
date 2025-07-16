@@ -1,23 +1,283 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    {% load static %}
-    <meta charset="UTF-8">
-    <title>{% block title %}My Site{% endblock %}</title>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+     <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{% block title %}My Site{% endblock %}</title>
+
+  <!-- Font Awesome CDN for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+
+
+
+
+
+    {% block head %}
+    {% endblock head %}
+
+    {% block page_css %}
+    {% endblock page_css %}
+
+ <style>
+/* Reset and basics */
+.navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: #333;
+      padding: 10px 20px;
+      color: white;
+    }
+
+    .navbar .logo img {
+      height: 40px;
+    }
+
+    .navbar .nav-links {
+      display: flex;
+      gap: 20px;
+    }
+
+    .navbar .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .navbar .nav-icons {
+      display: flex;
+      gap: 15px;
+      align-items: center;
+    }
+
+    .navbar .nav-icons i {
+      color: white;
+      font-size: 18px;
+      cursor: pointer;
+    }
+
+    .navbar .search-bar {
+      position: relative;
+    }
+
+    .navbar .search-bar input {
+      padding: 5px 10px;
+      border-radius: 5px;
+      border: none;
+      outline: none;
+    }
+
+    .navbar .search-bar i {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #555;
+    }
+
+    @media (max-width: 768px) {
+      .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .navbar .nav-links, .navbar .nav-icons {
+        flex-direction: column;
+        width: 100%;
+        margin-top: 10px;
+      }
+      .navbar .search-bar {
+        width: 100%;
+        margin-top: 10px;
+      }
+    }
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f4f4f4;
+}
+
+/* Navbar */
+.navbar {
+  background-color: #333;
+  padding: 15px 0;
+  color: white;
+}
+.navbar .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1100px;
+  margin: auto;
+  padding: 0 20px;
+}
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+  color: white;
+  text-decoration: none;
+}
+.nav-links a {
+  margin: 0 10px;
+  text-decoration: none;
+  color: #ccc;
+  font-size: 16px;
+}
+.nav-links a:hover {
+  color: #f1c40f;
+}
+
+/* Toggle menu icon */
+.menu-toggle {
+  display: none;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+/* Footer */
+.footer {
+  background-color: #222;
+  color: #ddd;
+  padding: 40px 20px 20px;
+}
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  max-width: 1100px;
+  margin: auto;
+}
+.footer-section {
+  flex: 1 1 250px;
+  margin: 10px;
+}
+.footer-section h4 {
+  margin-bottom: 15px;
+  color: #f1c40f;
+}
+.footer-section ul {
+  list-style: none;
+}
+.footer-section ul li {
+  margin-bottom: 10px;
+}
+.footer-section ul li a {
+  text-decoration: none;
+  color: #ccc;
+}
+.footer-section ul li a:hover {
+  color: #f1c40f;
+}
+.social-icons a {
+  color: #ccc;
+  margin-right: 10px;
+  font-size: 18px;
+}
+.social-icons a:hover {
+  color: #f1c40f;
+}
+.footer-bottom {
+  text-align: center;
+  padding-top: 10px;
+  font-size: 14px;
+  border-top: 1px solid #444;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    background-color: #333;
+    position: absolute;
+    right: 20px;
+    top: 60px;
+    padding: 10px;
+    border: 1px solid #555;
+  }
+  .nav-links.show {
+    display: flex;
+  }
+  .menu-toggle {
+    display: block;
+    color: #fff;
+  }
+  .footer-container {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+  
+</style>
 </head>
-<body>
+{%block banner%} {%endblock&}
+<header class="navbar">
+    <div class="logo">
+      <a href="#"><img src="https://via.placeholder.com/120x40?text=Logo" alt="Logo"></a>
+    </div>
 
-    {% include "includes/header.html" %}  <!-- Navbar -->
+    <nav class="nav-links">
+      <a href="#">Home</a>
+      <a href="#">Festival Deals</a>
+      <a href="#">More</a>
+    </nav>
 
-    <main>
-        {% block content %}
-        {% endblock %}
-    </main>
+    <div class="search-bar">
+      <input type="text" placeholder="Search...">
+      <i class="fas fa-search"></i>
+    </div>
 
-    {% include "includes/footer.html" %}  <!-- Footer -->
+    <div class="nav-icons">
+      <i class="fas fa-heart"></i>
+      <i class="fas fa-shopping-cart"></i>
+      <a href="#"><i class="fas fa-user"></i> Sign In</a>
+    </div>
+  </header>
 
-    <script src="{% static 'js/script.js' %}"></script>
+
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-section">
+      <h4>About</h4>
+      <p>We provide the best products at great prices.</p>
+    </div>
+
+    <div class="footer-section">
+      <h4>Links</h4>
+      <ul>
+        <li><a href="{% url 'home' %}">Home</a></li>
+        <li><a href="{% url 'products' %}">Products</a></li>
+        <li><a href="{% url 'about' %}">About</a></li>
+        <li><a href="{% url 'contact' %}">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-section">
+      <h4>Follow Us</h4>
+      <div class="social-icons">
+        <a href="#"><i class="fab fa-facebook"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    &copy; <span id="year"></span> MyShop. All rights reserved.
+  </div>
+</footer>
+
+    {% block page_js %}
+
+    {% endblock page_js %}
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>
-
