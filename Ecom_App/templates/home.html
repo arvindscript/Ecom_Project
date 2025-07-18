@@ -11,8 +11,6 @@
 <div class="banner">
     <img src="{% static 'img/banner.jpg' %}" alt="Banner" style="width: 100%; height: auto;" />
 </div>
-{% endblock %}
-
 <section style="padding: 20px;">
     <h2>Welcome to My Shop</h2>
     <p>Browse our latest collections and deals!</p>
@@ -20,11 +18,13 @@
 
 <section style="padding: 20px;">
     <h3>Featured Products</h3>
+    <br>
     <div style="display: flex; flex-wrap: wrap; gap: 20px;">
         {% for product in products %}
         <div style="border: 1px solid #ccc; padding: 10px; width: 200px;">
             {% if product.image %}
-                <img src="{{ product.image.url }}" alt="{{ product.name }}" style="width: 100%; height: auto;" />
+            <img src="{{ product.image.url }}" alt="{{ product.name }}"style="width: 100%; height: auto;" />
+                <!-- <img src="{{ product.image.url }}" alt="{{ product.name }}" style="width: 100%; height: auto;" /> -->
             {% endif %}
             <h4>{{ product.name }}</h4>
             <p>{{ product.description|truncatewords:15 }}</p>
@@ -35,5 +35,31 @@
         {% endfor %}
     </div>
 </section>
+
+<!-- All product -->
+
+<section style="padding: 20px;">
+    <h3>Choice for Products</h3>
+    <br>
+    <div style="display: flex; flex-wrap: wrap; gap: 20px;">
+        {% for All_product in All_products %}
+        <div style="border: 1px solid #ccc; padding: 10px; width: 200px;">
+            {% if All_product.image %}
+            <img src="{{ product.image.url }}" alt="{{ product.name }}"style="width: 80%; height: auto;" />
+                <!-- <img src="{{ product.image.url }}" alt="{{ product.name }}" style="width: 100%; height: auto;" /> -->
+            {% endif %}
+            <h4>{{ All_product.name }}</h4>
+            <p>{{ All_product.description|truncatewords:15 }}</p>
+            <strong>₹{{ All_product.price }}</strong>
+        </div>
+        {% empty %}
+        <p>No products to show.</p>
+        {% endfor %}
+    </div>
+</section>
+
+{% endblock %}
+
+
 
 {% endblock %}
