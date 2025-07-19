@@ -1,5 +1,5 @@
 from django.views.generic import TemplateView
-from .models import Product,All_Product
+from .models import Product,All_Product,Latest_Product
 
 
 class HomePageView(TemplateView):
@@ -10,5 +10,5 @@ class HomePageView(TemplateView):
 
         context['products'] = Product.objects.all()[:6] 
         context['all_products'] = All_Product.objects.all()[:6]  # fix here
-
+        context['lates_products'] = Latest_Product.objects.all()[:6]   
         return context
