@@ -4,6 +4,37 @@
 {% load static %}
 
 {% block title %}Home - My Site{% endblock %}
+ {% block page_css %}
+ <style>
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 20px;
+    justify-content: center;
+  }
+
+  .product-card {
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    text-align: center;
+  }
+
+  .product-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+  }
+
+  @media (min-width: 1200px) {
+    .product-grid {
+      grid-template-columns: repeat(6, 1fr);
+    }
+  }
+</style>
+
+    {% endblock page_css %}
 
 {% block content %}
 
@@ -17,69 +48,67 @@
 </section>
 
 <section style="padding: 30px;">
-    <h3>Featured Products</h3>
-    <br>
-    <div style="display: flex; flex-wrap: wrap; gap: 20px;">
-        {% for product in products %}
-        <div style="border: 1px solid #ccc; padding: 10px; width: 200px;">
-            {% if product.image %}
-            <img src="{{ product.image.url }}" alt="{{ product.name }}"style="width: 100%; height: auto;" />
-                <!-- <img src="{{ product.image.url }}" alt="{{ product.name }}" style="width: 100%; height: auto;" /> -->
-            {% endif %}
-            <h4>{{ product.name }}</h4>
-            <p>{{ product.description|truncatewords:15 }}</p>
-            <strong>₹{{ product.price }}</strong>
-        </div>
-        {% empty %}
-        <p>No products to show.</p>
-        {% endfor %}
-    </div>
-</section>
-
-
-
-<section style="padding: 20px;">
-<h2>Choice for Your products</h2>
-<br>
-<div style="display: flex; flex-wrap: wrap; gap: 20px;">
-    {% for product in all_products %}
-    <div style="border: 1px solid #ccc; padding: 10px; width: 200px;">
-        {% if product.image %}
-        <img src="{{ product.image.url }}" alt="{{ product.name }}" style="width: 80%; height: auto;" />
-        {% endif %}
-        <h4>{{ product.name }}</h4>
-        <p>{{ product.description|truncatewords:15 }}</p>
-        <strong>₹{{ product.price }}</strong>
+  <h3>Featured Products</h3>
+  <br>
+  <div class="product-grid">
+    {% for product in products %}
+    <div class="product-card">
+      {% if product.image %}
+      <img src="{{ product.image.url }}" alt="{{ product.name }}" />
+      {% endif %}
+      <h4>{{ product.name }}</h4>
+      <p>{{ product.description|truncatewords:15 }}</p>
+      <strong>₹{{ product.price }}</strong>
     </div>
     {% empty %}
     <p>No products to show.</p>
     {% endfor %}
-</div>
+  </div>
+</section>
+
+<section style="padding: 20px;">
+  <h2>Choice for Your Products</h2>
+  <br>
+  <div class="product-grid">
+    {% for product in all_products %}
+    <div class="product-card">
+      {% if product.image %}
+      <img src="{{ product.image.url }}" alt="{{ product.name }}" />
+      {% endif %}
+      <h4>{{ product.name }}</h4>
+      <p>{{ product.description|truncatewords:15 }}</p>
+      <strong>₹{{ product.price }}</strong>
+    </div>
+    {% empty %}
+    <p>No products to show.</p>
+    {% endfor %}
+  </div>
 </section>
 
 <div class="banner">
     <img src="{% static 'img/smartwatch_banner.webp' %}" alt="Banner" style="width: 100%; height: 500px;;" />
 </div>
 
-<!-- latest product -->
- <section style="padding: 20px;">
-<h2>Latest Product</h2>
-<br>
-<div style="display: flex; flex-wrap: wrap; gap: 20px;">
+<section style="padding: 20px;">
+  <h2>Latest Products</h2>
+  <br>
+  <div class="product-grid">
     {% for product in latest_products %}
-    <div style="border: 1px solid #ccc; padding: 10px; width: 200px;">
-        {% if product.image %}
-        <img src="{{ product.image.url }}" alt="{{ product.name }}" style="width: 80%; height: auto;" />
-        {% endif %}
-        <h4>{{ product.name }}</h4>
-        <p>{{ product.description|truncatewords:15 }}</p>
-        <strong>₹{{ product.price }}</strong>
+    <div class="product-card">
+      {% if product.image %}
+      <img src="{{ product.image.url }}" alt="{{ product.name }}" />
+      {% endif %}
+      <h4>{{ product.name }}</h4>
+      <p>{{ product.description|truncatewords:15 }}</p>
+      <strong style="color: green;">₹{{ product.price }}</strong>
     </div>
     {% empty %}
     <p>No products to show.</p>
     {% endfor %}
-</div>
+  </div>
 </section>
+
+
 
 {% endblock %}
 
