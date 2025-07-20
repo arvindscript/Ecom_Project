@@ -15,7 +15,7 @@
 
 # views.py
 from django.views.generic import TemplateView
-from .models import Product, All_Product, Latest_Product
+from .models import Product, All_Product, Latest_Product,Blog_Product
 
 class HomePageView(TemplateView):
     template_name = 'home.html'
@@ -25,4 +25,5 @@ class HomePageView(TemplateView):
         context['products'] = Product.objects.all()[:6] 
         context['all_products'] = All_Product.objects.all()[:6]
         context['latest_products'] = Latest_Product.objects.all() # fixed here
+        context['blog_products'] = Blog_Product.objects.all()[:3]
         return context

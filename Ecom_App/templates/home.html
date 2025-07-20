@@ -32,6 +32,72 @@
       grid-template-columns: repeat(6, 1fr);
     }
   }
+  .banner3 {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap; /* allows wrapping on smaller screens */
+  padding: 20px;
+}
+
+.banner3-1,
+.banner3-2 {
+  flex: 1 1 45%; /* responsive basis */
+  max-width: 100%;
+}
+
+.banner3-1 img,
+.banner3-2 img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 10px; /* optional for rounded corners */
+}
+
+/* Responsive tweaks for mobile */
+@media (max-width: 768px) {
+  .banner3-1,
+  .banner3-2 {
+    flex: 1 1 100%;
+  }
+}
+
+  .blog_product {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+  }
+
+  .blog-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    padding: 15px;
+    background-color: #fff;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.2s ease;
+  }
+
+  .blog-card:hover {
+    transform: translateY(-5px);
+  }
+
+  .blog-card img {
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+    border-radius: 6px;
+    margin-bottom: 10px;
+  }
+
+  @media (max-width: 500px) {
+    .blog-card img {
+      height: 150px;
+    }
+  }
+    
+      
 </style>
 
     {% endblock page_css %}
@@ -108,6 +174,49 @@
   </div>
 </section>
 
+<div class="banner3">
+  <div class="banner3-1">
+    <img src="{% static 'img/Headphone_banner_2.jpg' %}" alt="Banner" />
+  </div>
+  <div class="banner3-2">
+    <img src="{% static 'img/Headphone_banner_1.jpg' %}" alt="Banner" />
+  </div>
+</div>
+
+<!-- <section style="padding: 20px;">
+  <h2>Blog Events</h2>
+  <br>
+  <div class="product-grid">
+    {% for product in blog_products %}
+    <div class="product-card">
+      {% if product.image %}
+      <img src="{{ product.image.url }}" alt="{{ product.name }}">
+      {% endif %}
+      <h4>{{ product.name }}</h4>
+      <p>{{ product.description|truncatewords:15 }}</p>
+    </div>
+    {% empty %}
+    <p>No products to show.</p>
+    {% endfor %}
+  </div>
+</section> -->
+<section style="padding: 20px;">
+  <h2>Blog Events</h2>
+  <br>
+  <div class="blog_product"> 
+    {% for product in blog_products %}
+    <div class="blog-card"> 
+      {% if product.image %}
+      <img src="{{ product.image.url }}" alt="{{ product.name }}">
+      {% endif %}
+      <h4>{{ product.name }}</h4>
+      <p>{{ product.description|truncatewords:15 }}</p>
+    </div>
+    {% empty %}
+    <p>No products to show.</p>
+    {% endfor %}
+  </div>
+</section>
 
 
 {% endblock %}
