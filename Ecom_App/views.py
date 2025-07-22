@@ -15,6 +15,8 @@
 
 # views.py
 from django.views.generic import TemplateView
+from django.views import View
+from django.shortcuts import render, redirect
 from .models import Product, All_Product, Latest_Product,Blog_Product
 
 class HomePageView(TemplateView):
@@ -27,3 +29,7 @@ class HomePageView(TemplateView):
         context['latest_products'] = Latest_Product.objects.all() # fixed here
         context['blog_products'] = Blog_Product.objects.all()[:3]
         return context
+    
+
+class SignInView(TemplateView):
+    template_name = 'signin.html'

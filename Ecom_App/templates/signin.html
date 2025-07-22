@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+{% load static %}
+
+<!-- {% block title %}Sign In{% endblock %} -->
+
+{% block page_css %}
+<style>
+.container {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+  width: 100%;
+  max-width: 400px;
+  margin: 2rem auto;
+}
+.form h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #333;
+}
+.input-group {
+  margin-bottom: 1rem;
+}
+.input-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #555;
+}
+.input-group input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+button {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: #667eea;
+  border: none;
+  color: white;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+button:hover {
+  background-color: #556cd6;
+}
+.signup {
+  text-align: center;
+  margin-top: 1rem;
+}
+.signup a {
+  color: #667eea;
+  text-decoration: none;
+}
+</style>
+{% endblock page_css %}
+
+{% block content %}
+<div class="container">
+  <form id="loginForm" class="form">
+    <h2>Sign In</h2>
+    <div class="input-group">
+      <label for="email">Email</label>
+      <input type="email" id="email" placeholder="Enter your email" required />
+    </div>
+    <div class="input-group">
+      <label for="password">Password</label>
+      <input type="password" id="password" placeholder="Enter your password" required />
+    </div>
+    <button type="submit">Sign In</button>
+    <p class="signup">Don't have an account? <a href="#">Register</a></p>
+  </form>
+</div>
+{% endblock content %}
+
+{% block page_js %}
+<script>
+document.getElementById('loginForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+
+  const email = document.getElementById('email').value.trim();
+  const password = document.getElementById('password').value.trim();
+
+  if (!email || !password) {
+    alert("Please fill in all fields.");
+    return;
+  }
+
+  if (email === "test@example.com" && password === "password123") {
+    alert("Login successful!");
+  } else {
+    alert("Invalid email or password.");
+  }
+});
+</script>
+{% endblock page_js %}
+
