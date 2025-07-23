@@ -104,7 +104,6 @@
 
 {% block content %}
 
-{% block banner %}
 <div class="banner">
     <img src="{% static 'img/banner.jpg' %}" alt="Banner" style="width: 100%; height: auto;" />
 </div>
@@ -183,23 +182,6 @@
   </div>
 </div>
 
-<!-- <section style="padding: 20px;">
-  <h2>Blog Events</h2>
-  <br>
-  <div class="product-grid">
-    {% for product in blog_products %}
-    <div class="product-card">
-      {% if product.image %}
-      <img src="{{ product.image.url }}" alt="{{ product.name }}">
-      {% endif %}
-      <h4>{{ product.name }}</h4>
-      <p>{{ product.description|truncatewords:15 }}</p>
-    </div>
-    {% empty %}
-    <p>No products to show.</p>
-    {% endfor %}
-  </div>
-</section> -->
 <section style="padding: 20px;">
   <h2>Blog Events</h2>
   <br>
@@ -223,4 +205,3 @@
 
 
 
-{% endblock %}

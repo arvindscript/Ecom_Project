@@ -18,6 +18,8 @@ from django.views.generic import TemplateView
 from django.views import View
 from django.shortcuts import render, redirect
 from .models import Product, All_Product, Latest_Product,Blog_Product
+from django.contrib.auth import authenticate, login
+from django.contrib import messages
 
 class HomePageView(TemplateView):
     template_name = 'home.html'
@@ -31,5 +33,42 @@ class HomePageView(TemplateView):
         return context
     
 
+# class SignInView(TemplateView):
+#     template_name = 'signin.html'
+
+#     def get(self, request):
+#         return render(request, self.template_name)
+
+#     def post(self, request):
+#         email = request.POST.get('email')
+#         password = request.POST.get('password')
+
+#         user = authenticate(request, username=email, password=password)
+#         if user is not None:
+#             login(request, user)
+#             return redirect('home')  # Make sure 'home' is a named URL in your urls.py
+#         else:
+#             messages.error(request, 'Invalid email or password')
+#             return render(request, self.create.html)
+from django.views.generic import TemplateView
+from django.shortcuts import render, redirect
+from django.contrib import messages
+from django.contrib.auth import authenticate, login
+
 class SignInView(TemplateView):
     template_name = 'signin.html'
+
+    def get(self, request):
+        return render(request, self.template_name)
+
+    def post(self, request):
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+
+        user = authenticate(request, username=email, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect('home')  # Ensure 'home' is defined in urls.py with name='home'
+        else:
+            messages.error(request, 'Invalid email or password')
+            return render(request, self.template_name)  # ✅ Correct template re-render

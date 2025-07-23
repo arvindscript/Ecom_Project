@@ -8,6 +8,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', HomePageView.as_view(), name='home'),
     path('signin/', SignInView.as_view(), name='signin'), 
+    #  path('signup/',SignInView.as_view(), name='signin'),
 
 ]
 if settings.DEBUG:
