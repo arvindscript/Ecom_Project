@@ -37,3 +37,13 @@ class Blog_Product(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class Festival_Deals(models.Model):
+    date = models.CharField(max_length=100, blank=True, null=True)
+    name = models.CharField(max_length=100)
+    image = models.ImageField(upload_to='products/', blank=True, null=True)
+    description = models.TextField()
+
+    def __str__(self):
+        return self.name

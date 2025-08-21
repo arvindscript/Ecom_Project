@@ -3,7 +3,11 @@
 from django.views.generic import TemplateView
 from django.views import View
 from django.shortcuts import render, redirect
-from .models import Product, All_Product, Latest_Product,Blog_Product
+from .models import Product, All_Product, Latest_Product,Blog_Product,Festival_Deals
+def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['festival_deals'] = Festival_Deals.objects.all()[:6] 
+        return context
 from django.contrib.auth import authenticate, login
 from django.contrib import messages
 from django.contrib.auth.models import User
@@ -81,3 +85,12 @@ class CreateInView(View):
             login(request, user)
             return redirect('home')
         return render(request, self.template_name, {'form': form})
+
+class FestivalPageView(TemplateView):
+    template_name = 'festival.html'
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['festival_deals'] = Festival_Deals.objects.all()[:6] 
+        return context
+    
+    
