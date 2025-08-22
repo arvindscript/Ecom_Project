@@ -13,7 +13,7 @@
 <section style="padding: 30px;">
   <h3>Festival Deals</h3>
   <br>
-  <div class="festival_deals">
+  <!-- <div class="festival_deals">
     {% for product in products %}
     <div class="product-card">
       {% if product.image %}
@@ -26,7 +26,23 @@
     {% empty %}
     <p>No products to show.</p>
     {% endfor %}
+  </div> -->
+  <div class="festival_deals">
+  {% for product in festival_deals %}
+  <div class="product-card">
+    {% if product.image %}
+    <img src="{{ product.image.url }}" alt="{{ product.name }}" />
+    {% endif %}
+    <h4>{{ product.name }}</h4>
+    <p>{{ product.description|truncatewords:15 }}</p>
+    {% if product.price %}
+      <strong>₹{{ product.price }}</strong>
+    {% endif %}
   </div>
+  {% empty %}
+  <p>No products to show.</p>
+  {% endfor %}
+</div>
 </section>
 {% endblock content %}
 
